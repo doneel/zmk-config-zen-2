@@ -18,6 +18,16 @@
             bindings = <&kp UNDER>, <&kp PIPE>;
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
+
+        qlt: quick-layer-tap {
+            compatible = "zmk,behavior-hold-tap";
+            label = "QUICK-LAYER-TAP";
+            #binding-cells = <2>;
+            flavor = "hold-preferred";
+            tapping-term-ms = <200>;
+            quick-tap-ms = <125>;
+            bindings = <&kp>, <&kp>;
+        };
     };
 };
 
@@ -44,14 +54,14 @@
 
 // -----------------------------------------------------------------------------------------
 // |  `   |  Q  |  W  |  E  |  R  |  T  |   |  Y  |  U   |  I  |  O  |  P  |   =  |
-// | ALT  |  A  |  S  |  D  |  F  |  G  |   |  H  |  J   |  K  |  L  |  ;  |  '   |
-// | SHFT |  Z  |  X  |  C  |  V  |  B  |   |  N  |  M   |  ,  |  .  |  /  |  -   |
+// | TAB  |  A  |  S  |  D  |  F  |  G  |   |  H  |  J   |  K  |  L  |  ;  |  '   |
+// | CTRL |  Z  |  X  |  C  |  V  |  B  |   |  N  |  M   |  ,  |  .  |  /  |  -   |
 //                    | BKSP | SHFT | GUI |   | ENT | SPC  | CTRL |
                         bindings = <
-   &kp GRAVE   &kp Q &kp W &kp E &kp R &kp T   &kp Y &kp U  &kp I     &kp O   &kp P    &kp EQUAL
-   &kp LALT &kp A &kp S &kp D &kp F &kp G   &kp H &kp J  &kp K     &kp L   &kp SEMI &kp SQT
-   &kp LSHFT &kp Z &kp X &kp C &kp V &kp B   &kp N &kp M  &kp COMMA &kp DOT &kp FSLH &kp MINUS
-                  &kp BSPC &kp LSHFT &kp LGUI   &lt 1 RET &lt 2 SPACE &kp RCTRL
+   &kp GRAVE &kp Q &kp W &kp E &kp R &kp T   &kp Y &kp U  &kp I     &kp O   &kp P    &kp EQUAL
+   &kp TAB   &kp A &kp S &kp D &kp F &kp G   &kp H &kp J  &kp K     &kp L   &kp SEMI &kp SQT
+   &kp LCTRL &kp Z &kp X &kp C &kp V &kp B   &kp N &kp M  &kp COMMA &kp DOT &kp FSLH &kp MINUS
+                  &kp BSPC &kp LSHFT &kp LGUI   &qlt 1 RET &qlt 2 SPACE &kp RCTRL
                         >;
                 };
                 lower_layer {
@@ -60,12 +70,12 @@
 // |  TAB |  1  |  2  |  3      |  4  |  5  |   |  6  |  7  |  8  |  9  |  0  | BKSP |
 // | BTCLR| BT1 | BT2 | BT3     | BT4 | BT5 |   | LFT | DWN |  UP | RGT |     |      |
 // | SHFT |     |     |         |     |     |   |     |     |     |     |     |      |
-//                    | ALT BCK |     | ALT |   | ENT |     | ALT |
+//                    | ALT BCK |     | ALT |   |     |     | ALT |
                         bindings = <
    &kp TAB    &kp N1       &kp N2       &kp N3       &kp N4       &kp N5         &kp N6   &kp N7   &kp N8 &kp N9    &kp N0 &kp BSPC
    &bt BT_CLR &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4   &kp LEFT &kp DOWN &kp UP &kp RIGHT &trans &trans
    &kp LSHFT  &trans       &trans       &trans       &trans       &trans         &trans   &trans   &trans &trans    &trans &trans
-                          	        &kp LA(BSPC) &kp LSHIFT   &kp LALT      &kp RET  &trans   &kp RALT
+                          	        &kp LA(BSPC) &kp LSHIFT   &kp LALT       &trans  &trans   &kp RALT
                         >;
                 };
 
@@ -73,15 +83,32 @@
                         label = "SYMBOL";
 // -----------------------------------------------------------------------------------------
 // |  ~   |  !  |  @  |  #  |   $  |  %  |   |  ^  |  &  |  *  |  (  |  )  |  +   |
-// | CTRL |     |     |     |      | TAB |   |     |  {  |  }  |  [  |  ]  |  \   |
-// | SHFT |     |     |     |      | ESC |   |  _  |  +  |  {  |  }  | "|" | _"|" |
+// | PG_UP |     |     |     |      | TAB |   |     |  {  |  }  |  [  |  ]  |  \   |
+// | PG_DN |     |     |     |      | ESC |   |  _  |  +  |  {  |  }  | "|" | _"|" |
 //                    | GUI | SHFT | SPC |   | ENT |     | ALT |
                         bindings = <
    &kp TILDE &kp EXCL &kp AT &kp HASH &kp DLLR &kp PRCNT   &kp CARET &kp AMPS  &kp KP_MULTIPLY &kp LPAR   &kp RPAR &kp PLUS
-   &kp LCTRL &trans   &trans &trans   &trans   &kp TAB     &trans    &kp LBRC  &kp RBRC        &kp LBKT   &kp RBKT &kp BSLH 
-   &kp LSHFT &trans   &trans &trans   &trans   &kp ESC     &kp UNDER &kp PLUS  &kp LBRC        &kp RBRC   &kp PIPE &underscorePipe
+   &kp PG_UP &trans   &trans &trans   &trans   &kp TAB     &trans    &kp LBRC  &kp RBRC        &kp LBKT   &kp RBKT &kp BSLH 
+   &kp PG_DN &trans   &trans &trans   &trans   &kp ESC     &kp UNDER &kp PLUS  &kp LBRC        &kp RBRC   &kp PIPE &underscorePipe
                     	     &kp LGUI &kp LSHIFT   &kp SPACE   &kp RET   &trans    &kp RALT
                         >;
                 };
+
+                fn_layer {
+                        label = "FUNCTION";
+// -----------------------------------------------------------------------------------------
+// |  ~   |  !  |  @  |  #  |   $  |  %  |   |  ^  |  &  |  *  |  (  |  )  |  +   |
+// | BTCLR| BT1 | BT2 | BT3     | BT4 | BT5 |   | LFT | DWN |  UP | RGT |     |      |
+// | PG_DN |     |     |     |      | ESC |   |  _  |  +  |  {  |  }  | "|" | _"|" |
+//                    | GUI | SHFT | SPC |   | ENT |     | ALT |
+                        bindings = <
+   &kp TILDE &kp EXCL &kp AT &kp HASH &kp DLLR &kp PRCNT   &kp CARET &kp AMPS  &kp KP_MULTIPLY &kp LPAR   &kp RPAR &kp PLUS
+   &bt BT_CLR &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4   &kp LEFT &kp DOWN &kp UP &kp RIGHT &trans &trans
+   &kp PG_DN &trans   &trans &trans   &trans   &kp ESC     &kp UNDER &kp PLUS  &kp LBRC        &kp RBRC   &kp PIPE &underscorePipe
+                    	     &kp LGUI &kp LSHIFT   &kp SPACE   &kp RET   &trans    &kp RALT
+                        >;
+                };
+
+
         };
 };
