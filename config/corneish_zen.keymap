@@ -26,7 +26,7 @@
             flavor = "hold-preferred";
             tapping-term-ms = <200>;
             quick-tap-ms = <125>;
-            bindings = <&kp>, <&kp>;
+            bindings = <&mo>, <&kp>;
         };
     };
 };
@@ -61,7 +61,7 @@
    &kp GRAVE &kp Q &kp W &kp E &kp R &kp T   &kp Y &kp U  &kp I     &kp O   &kp P    &kp EQUAL
    &kp TAB   &kp A &kp S &kp D &kp F &kp G   &kp H &kp J  &kp K     &kp L   &kp SEMI &kp SQT
    &kp LCTRL &kp Z &kp X &kp C &kp V &kp B   &kp N &kp M  &kp COMMA &kp DOT &kp FSLH &kp MINUS
-                  &kp BSPC &kp LSHFT &kp LGUI   &qlt &mo 1 RET &qlt &mo 2 SPACE &kp RCTRL
+                  &kp BSPC &kp LSHFT &kp LGUI   &qlt 1 RET &qlt 2 SPACE &kp RCTRL
                         >;
                 };
                 lower_layer {
