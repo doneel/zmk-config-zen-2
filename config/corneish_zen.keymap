@@ -10,7 +10,27 @@
 };
 
 / {
+    combos {
+        compatible = "zmk,combos";
+        combo_fd_esc {
+            timeout-ms = <50>;
+            key-positions = <17 16>;
+            bindings = <&kp ESC>;
+        };
+    };
+};
+
+/ {
     behaviors {
+        
+        tdcapsword: tap_dance_caps_word {
+            compatible = "zmk,behavior-tap-dance";
+            label = "TD_CAPS_WORD";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&kp LSHIFT>, <&caps_word>;
+        };
+
         underscorePipe: underscore_pipe {
             compatible = "zmk,behavior-mod-morph";
             label = "UNDERSCORE_PIPE";
@@ -24,7 +44,7 @@
             label = "QUICK-LAYER-TAP";
             #binding-cells = <2>;
             flavor = "balanced";
-            tapping-term-ms = <200>;
+            tapping-term-ms = <100>;
             quick-tap-ms = <125>;
             bindings = <&mo>, <&kp>;
         };
@@ -84,12 +104,12 @@
 // -----------------------------------------------------------------------------------------
 // |  ~   |  !  |  @  |  #  |   $  |  %  |   |  ^  |  &  |  *  |  (  |  )  |  +   |
 // | PG_UP |     |     |     |      | TAB |   |     |  {  |  }  |  [  |  ]  |  \   |
-// | PG_DN |     |     |     |      | ESC |   |  _  |  +  |  {  |  }  | "|" | _"|" |
+// | PG_DN |     |     |     |      | ESC |   |  _  |  +  |  {  |  }  | \   | "|" |
 //                    | GUI | SHFT | SPC |   | ENT |     | ALT |
                         bindings = <
    &kp TILDE &kp EXCL &kp AT &kp HASH &kp DLLR &kp PRCNT   &kp CARET &kp AMPS  &kp KP_MULTIPLY &kp LPAR   &kp RPAR &kp PLUS
    &kp PG_UP &trans   &trans &trans   &trans   &kp TAB     &trans    &kp LBRC  &kp RBRC        &kp LBKT   &kp RBKT &kp BSLH 
-   &kp PG_DN &trans   &trans &trans   &trans   &kp ESC     &kp UNDER &kp PLUS  &kp LBRC        &kp RBRC   &kp PIPE &underscorePipe
+   &kp PG_DN &trans   &trans &trans   &trans   &kp ESC     &kp UNDER &kp PLUS  &kp LBRC        &kp RBRC   &kp BSLH &kp PIPE
                     	     &kp LGUI &kp LSHIFT   &kp SPACE   &kp RET   &trans    &kp RALT
                         >;
                 };
@@ -97,14 +117,14 @@
                 fn_layer {
                         label = "FUNCTION";
 // -----------------------------------------------------------------------------------------
-// |  ~   |  !  |  @  |  #  |   $  |  %  |   |  ^  |  &  |  *  |  (  |  )  |  +   |
-// | BTCLR| BT1 | BT2 | BT3     | BT4 | BT5 |   | LFT | DWN |  UP | RGT |     |      |
-// | PG_DN |     |     |     |      | ESC |   |  _  |  +  |  {  |  }  | "|" | _"|" |
+// |  ~     |  !  |  @    |  #    |   $   |  %  |   |  ^  |  &  |  *  |  (  |  )  |  +   |
+// | BTCLR  | BT1 | BT2   | BT3   | BT4   | BT5 |   | LFT | DWN |  UP | RGT |     |      |
+// | PG_DN  |     | VM_M  | VM_DN | VM_UP | ESC |   |  _  |  +  |  {  |  }  | "|" | _"|" |
 //                    | GUI | SHFT | SPC |   | ENT |     | ALT |
                         bindings = <
-   &kp TILDE &kp EXCL &kp AT &kp HASH &kp DLLR &kp PRCNT   &kp CARET &kp AMPS  &kp KP_MULTIPLY &kp LPAR   &kp RPAR &kp PLUS
-   &bt BT_CLR &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4   &kp LEFT &kp DOWN &kp UP &kp RIGHT &trans &trans
-   &kp PG_DN &trans   &trans &trans   &trans   &kp ESC     &kp UNDER &kp PLUS  &kp LBRC        &kp RBRC   &kp PIPE &underscorePipe
+   &kp TILDE  &kp EXCL      &kp AT        &kp HASH      &kp DLLR      &kp PRCNT     &kp CARET &kp AMPS  &kp KP_MULTIPLY &kp LPAR   &kp RPAR &kp PLUS
+   &bt BT_CLR &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4  &kp LEFT  &kp DOWN  &kp UP          &kp RIGHT &trans &trans
+   &kp PG_DN  &trans        &kp C_MUTE    &kp C_VOL_DN  &kp C_VOL_UP  &kp ESC       &kp UNDER &kp PLUS  &kp LBRC        &kp RBRC   &kp PIPE &underscorePipe
                     	     &kp LGUI &kp LSHIFT   &kp SPACE   &kp RET   &trans    &kp RALT
                         >;
                 };
