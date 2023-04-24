@@ -22,8 +22,8 @@
             key-positions = <38 39>;
             bindings = <&mo 3>;
         };
-        symbol_layer_combo {
-            timeout-ms = <150>;
+        combo_symbol_layer {
+            timeout-ms = <1000>;
             key-positions = <37 40>;
             bindings = <&mo 2>;
         };
