@@ -33,14 +33,6 @@
 / {
     behaviors {
         
-        tdcapsword: tap_dance_caps_word {
-            compatible = "zmk,behavior-tap-dance";
-            label = "TD_CAPS_WORD";
-            #binding-cells = <0>;
-            tapping-term-ms = <300>;
-            bindings = <&kp LSHIFT>, <&caps_word>;
-        };
-
         underscorePipe: underscore_pipe {
             compatible = "zmk,behavior-mod-morph";
             label = "UNDERSCORE_PIPE";
