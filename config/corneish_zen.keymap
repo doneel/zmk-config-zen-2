@@ -59,7 +59,7 @@
             tapping-term-ms = <180>;
             quick-tap-ms = <125>;
             bindings = <&kp>, <&kp>;
-        }
+        };
     };
 };
 
